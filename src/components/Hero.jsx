@@ -5,6 +5,9 @@ import { BackgroundCircles, BottomLine, Gradient } from "./design/Hero";
 import { heroIcons } from "../constants";
 import { ScrollParallax } from "react-just-parallax";
 import { useRef } from "react";
+import Generating from "./Generating";
+import Notification from "./Notification";
+import CompanyLogos from "./CompanyLogos";
 
 export const Hero = () => {
   const parallaxRef = useRef(null);
@@ -19,7 +22,7 @@ export const Hero = () => {
       <div className="container relative" ref={parallaxRef}>
         <div className="relative z-1 max-w-[62rem] mx-auto text-center mb-[4rem] md:mb-20 lg:mb:[6rem]">
           <h1 className="h1 mb-6">
-            Explore the Possibilites &nbsp; of AI&nbsp; Chatting with {` `}
+            Explore the Possibilites of &nbsp;AI&nbsp; Chatting with {` `}
             <span className="inline-block relative">
               BrainWave{" "}
               <img
@@ -49,15 +52,26 @@ export const Hero = () => {
                   className="w-full scale-[1.7] translate-y-[8%] md:scale-[1] md:-translate-y-[10%] lg:-translate-y-[23%]"
                   width={1024}
                   height={490}
-                  alt="hero"
+                  alt="AI"
+                />
+                <Generating
+                  className="absolute left-4 right-4 bottom-5 md:left-1/2 md:right-auto md:bottom-[3.25rem] md:w-[31rem]
+                md:-translate-x-1/2"
                 />
                 <ScrollParallax isAbsolutelyPositioned>
-                  <ul className="hidden absolute -left-[5.5rem] bottom-[7.5rem] px-1 py-1 bg-n-9/40 backdrop-blur border border-n-1/10 rounded xl:flex "></ul>
-                  {heroIcons.map((icon, index) => (
-                    <li className="p-5" key={index}>
-                      <img src={icon} alt={icon} width={24} height={25} />
-                    </li>
-                  ))}
+                  <ul className="hidden absolute -left-[5.5rem] bottom-[7.5rem] px-1 py-1 bg-n-9/40 backdrop-blur border border-n-1/10 rounded-2xl xl:flex ">
+                    {heroIcons.map((icon, index) => (
+                      <li className="p-5" key={index}>
+                        <img src={icon} alt={icon} width={24} height={25} />
+                      </li>
+                    ))}
+                  </ul>
+                </ScrollParallax>
+                <ScrollParallax isAbsolutelyPositioned>
+                  <Notification
+                    className="hidden absolute -right-[5.5rem] bottom-[11rem] w-[18rem] xl:flex"
+                    title="Code generation"
+                  />
                 </ScrollParallax>
               </div>
             </div>
@@ -74,7 +88,9 @@ export const Hero = () => {
           </div>
           <BackgroundCircles />
         </div>
+        <CompanyLogos className="hidden relative z-10 mt-20 lg:block" />
       </div>
+      <BottomLine />
     </Section>
   );
 };
